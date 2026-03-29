@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaf2f8;
+}
+
+/* POSTER */
+.poster {
+    width: 1100px;
+    margin: auto;
+    background: white;
+    padding: 10px;
+}
+
+/* HEADER */
+.header {
+    background: #d6eaf8;
+    padding: 10px;
+    border-bottom: 3px solid #3498db;
+    border-radius: 8px;
+}
+
+/* HEADER CONTENT */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 70px;
+}
+
+/* LOGO FIX (IMPORTANT) */
+.logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 180px;   /* small like reference */
+}
+
+/* TITLE */
+.title-text {
+    text-align: center;
+}
+/* NAME BOX */
+.name-box {
+    margin-top: 6px;
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px solid #3498db;
+    border-radius: 6px;
+    font-size: 12px;
+    background: white;
+    color: #1b4f72;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 18px;
+    color: #1b4f72;
+}
+
+.header p {
+    font-size: 12px;
+}
+
+/* GRID */
+.grid {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.left, .right {
+    flex: 1;
+}
+
+/* SECTION */
+.section {
+    background: #f8f9f9;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+/* HEADINGS */
+h2 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #21618c;
+}
+
+/* TEXT (UNIFORM FIX) */
+p {
+    font-size: 11px;
+    margin: 3px 0;
+    text-align: justify;
+}
+
+/* ENSURE OBJECTIVES MATCH */
+.same-text {
+    font-size: 11px;
+}
+
+/* IMAGE */
+.img-small {
+    width: 65%;
+    display: block;
+    margin: 5px auto;
+    border-radius: 6px;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 6px;
+    background: #d6eaf8;
+    border-radius: 6px;
+    font-size: 11px;
+}

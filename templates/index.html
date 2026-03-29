@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Change Detection</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #141E30, #243B55);
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px;
+
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        .upload-section {
+            display: flex;
+            gap: 20px;
+        }
+
+        .upload-box {
+            flex: 1;
+            padding: 20px;
+            border: 2px dashed #4a90e2;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .upload-box:hover {
+            background: rgba(255,255,255,0.1);
+            transform: scale(1.02);
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+
+        .preview {
+            margin-top: 15px;
+        }
+
+        .preview img {
+            width: 100%;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .btn {
+            margin-top: 25px;
+            width: 100%;
+            padding: 15px;
+
+            font-size: 18px;
+            background: linear-gradient(90deg, #2a5298, #1e3c72);
+            border: none;
+            border-radius: 10px;
+
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(42,82,152,0.7);
+        }
+
+        .results {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .image-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .image-row img {
+            width: 32%;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+        }
+
+        .analysis-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+        }
+
+        /* ✅ PROGRESS BAR */
+        .progress-bar {
+            width: 100%;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .progress-fill {
+            height: 20px;
+            background: #00ffcc;
+            text-align: center;
+            line-height: 20px;
+            color: black;
+            font-size: 14px;
+            width: 0%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    🚀 AI-Based Urban Change Detection
+</div>
+
+<div class="container">
+
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+
+        <div class="upload-section">
+
+            <div class="upload-box">
+                <h3>Before Image</h3>
+                <input type="file" name="before_image" accept="image/*" onchange="previewImage(event, 'beforePreview')">
+
+                <div class="preview">
+                    <img id="beforePreview">
+                </div>
+            </div>
+
+            <div class="upload-box">
+                <h3>After Image</h3>
+                <input type="file" name="after_image" accept="image/*" onchange="previewImage(event, 'afterPreview')">
+
+                <div class="preview">
+                    <img id="afterPreview">
+                </div>
+            </div>
+
+        </div>
+
+        <button class="btn" type="submit">
+            🔍 Detect Changes
+        </button>
+
+    </form>
+
+    {% if result_image %}
+    <div class="results">
+
+        <h2>📊 Detection Results</h2>
+
+        <div class="image-row">
+            <img src="{{ url_for('static', filename='before.png') }}">
+            <img src="{{ url_for('static', filename='after.png') }}">
+            <img src="{{ url_for('static', filename='result.png') }}">
+        </div>
+
+        <div class="analysis-box">
+            <h3>Change Area: {{ change_percent }}%</h3>
+
+            <!-- ✅ FIXED PROGRESS BAR -->
+            <div class="progress-bar">
+                <div class="progress-fill"
+                     style="width: {{ change_percent|default(0) }}%;">
+                    {{ change_percent }}%
+                </div>
+            </div>
+
+            <p>{{ change_text }}</p>
+        </div>
+
+    </div>
+    {% endif %}
+
+</div>
+
+<script>
+function previewImage(event, id) {
+    const reader = new FileReader();
+    reader.onload = function(){
+        const img = document.getElementById(id);
+        img.src = reader.result;
+        img.style.display = "block";
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+
+</body>
+</html>

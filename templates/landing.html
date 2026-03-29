@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Change Detection</title>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 🌌 SPACE BACKGROUND */
+        .space {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: url("/static/space.jpg") no-repeat center center/cover;
+            z-index: -2;
+        }
+
+        /* ✨ STAR TWINKLE */
+        .space::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url("https://www.transparenttextures.com/patterns/stardust.png");
+            animation: twinkle 3s infinite alternate;
+            opacity: 0.4;
+        }
+
+        @keyframes twinkle {
+            from { opacity: 0.2; }
+            to { opacity: 0.6; }
+        }
+
+        /* 🌍 EARTH */
+        .earth {
+            position: absolute;
+            bottom: -200px;
+            width: 120%;
+            left: -10%;
+            opacity: 0.95;
+        }
+
+        /* 🛰️ ORBIT SYSTEM */
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            width: 750px;
+            height: 750px;
+
+            margin-left: -375px;
+            margin-top: -375px;
+
+            border-radius: 50%;
+
+            animation: rotateOrbit 14s linear infinite;
+
+            transform: rotateX(65deg);
+        }
+
+        /* 🔥 ORBIT PATH */
+        .orbit-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px dashed rgba(255,255,255,0.2);
+            border-radius: 50%;
+        }
+
+        /* 🛰️ SATELLITE */
+        .satellite {
+            width: 150px;
+            height: 150px;
+
+            background: url("/static/satellite.png") no-repeat center/contain;
+
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(20deg);
+
+            filter: drop-shadow(0 0 12px rgba(255,255,255,0.8));
+        }
+
+        @keyframes rotateOrbit {
+            from {
+                transform: rotateX(65deg) rotate(0deg);
+            }
+            to {
+                transform: rotateX(65deg) rotate(360deg);
+            }
+        }
+
+        /* 🎯 CONTENT */
+        .content {
+            position: absolute;
+            top: 40%;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        /* 🔥 STATUS TEXT */
+        .status {
+            color: lightgreen;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            opacity: 0.85;
+            margin-bottom: 25px;
+            animation: slideUp 1.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #2a5298;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #1e3c72;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(42,82,152,0.8);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- 🌌 SPACE -->
+<div class="space"></div>
+
+<!-- 🌍 EARTH -->
+<img src="/static/earth_horizon.png" class="earth">
+
+<!-- 🛰️ SATELLITE SYSTEM -->
+<div class="orbit">
+    <div class="orbit-ring"></div>
+    <div class="satellite"></div>
+</div>
+
+<!-- 🎯 CONTENT -->
+<div class="content">
+
+    <h1>AI Based Urban Change Detection In Satellite Imagery</h1>
+
+    
+
+    
+
+    <button class="btn" onclick="goToApp()">
+        🚀 Enter System
+    </button>
+
+</div>
+
+<script>
+function goToApp() {
+    document.body.style.transition = "transform 1s ease";
+    document.body.style.transform = "scale(1.2)";
+
+    setTimeout(() => {
+        window.location.href = "/home";
+    }, 800);
+}
+</script>
+
+</body>
+</html>
